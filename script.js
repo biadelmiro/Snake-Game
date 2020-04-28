@@ -32,11 +32,17 @@ function update(event){
 }
 
 function iniciarJogo(){
-    
+    //Lógica do plano cateziano, temos o ponto 0 de x e 0 de y , passando disso ele aumenta ou diminui
+    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0; 
+    //se o valor de snake [0 que é sua cabeça] for maior que 15* o tamanho da box e ela estiver indo para a direita, automaticamente ela sai da box
+    //e então ela recebe o valor de zero e aparece no lado de zero, na esqueda p direita dnv.
+    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+    if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
 
     criarBG();
     criarCobrinha();
-
+    
     //criar posição x e y para que a cobrinha saiba qual é o ponto de partida
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
