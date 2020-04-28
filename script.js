@@ -21,7 +21,19 @@ function criarCobrinha(){
     }
 }
 
+document.addEventListener('keydown', update); // evento de click
+
+function update(event){
+    //código do botão: 37-direita, 38-baixo, 39-esquerda, 40-cima
+    if(event.keyCode == 37 && direction != "right") direction = "left"; // se o botão for 37 e a direção não for right a gente muda pra left
+    if(event.keyCode == 38 && direction != "down") direction = "up";
+    if(event.keyCode == 39 && direction != "left") direction = "right";
+    if(event.keyCode == 40 && direction != "up") direction = "down";
+}
+
 function iniciarJogo(){
+    
+
     criarBG();
     criarCobrinha();
 
