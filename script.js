@@ -7,6 +7,9 @@ snake[0] = {
     y: 8 * box // esse é o tamanho inicial da cobra 
 }
 
+let pontos;
+
+
 let direction = "right";
 let food = {
     //para que a comida apareça aleatóriamente é necessário por numeros aleatorios
@@ -86,7 +89,12 @@ function iniciarJogo(){
         food.y = Math.floor(Math.random() * 15 + 1) * box;
     }
 
-   
+    /*function contagem(){
+        for(i = 0; i <= snake.length; i++);
+        return pontos += 1;
+
+    }*/
+
     let newHead ={ //sempre vai ter que ter a cabeça
         x: snakeX,
         y: snakeY
