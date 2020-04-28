@@ -8,6 +8,12 @@ snake[0] = {
 }
 
 let direction = "right";
+let food = {
+    //para que a comida apareça aleatóriamente é necessário por numeros aleatorios
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
+
 
 function criarBG(){
     context.fillStyle = "lightgreen";//estilo do canvas
@@ -20,6 +26,13 @@ function criarCobrinha(){
         context.fillRect(snake[i].x, snake[i].y, box, box); //local onde ela está
     }
 }
+
+
+function drawFood(){
+    context.fillStyle = 'red';
+    context.fillRect(food.x, food.y, box, box);
+}
+
 
 document.addEventListener('keydown', update); // evento de click
 
@@ -42,6 +55,7 @@ function iniciarJogo(){
 
     criarBG();
     criarCobrinha();
+    drawFood();
     
     //criar posição x e y para que a cobrinha saiba qual é o ponto de partida
     let snakeX = snake[0].x;
@@ -51,13 +65,20 @@ function iniciarJogo(){
     //direito ele adiciona um quadrado no lado direito, se for pro esquerdo, ele diminui um por exemplo
 
     if (direction == "right") snakeX += box;
-    if (direction == "left") snakeY -= box; //diminui pq é um plano carteziano então consequentemente ele diminui indo pra esquerda e aumenta indo pra direita
+    if (direction == "left") snakeX -= box; //diminui pq é um plano carteziano então consequentemente ele diminui indo pra esquerda e aumenta indo pra direita
     if (direction == "up") snakeY -= box;
     if (direction == "down") snakeY += box;
 
+    //caso a posiçao
+    if(snakeX != food.x || snakeY != food.y){
+        snake.pop(); //retira o ultimo elemento do array
 
-    snake.pop(); //retira o ultimo elemento do array
+    } else {
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
 
+   
     let newHead ={ //sempre vai ter que ter a cabeça
         x: snakeX,
         y: snakeY
